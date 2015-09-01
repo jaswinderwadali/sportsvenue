@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/draweritem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_signin_btn_light_text_default"
+    android:padding="10dp">
+
+
+    <com.global.labs.sports.CircularImageView
+        android:id="@+id/circuler"
+        android:layout_width="@dimen/sixty"
+        android:layout_height="@dimen/sixty"
+        android:src="@drawable/user" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty"
+        android:layout_marginLeft="@dimen/paddingten"
+        android:gravity="center|left"
+        android:text="@string/login_signup"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/common_signin_btn_light_text_pressed" />
+</LinearLayout>

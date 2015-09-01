@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_signin_btn_light_text_focused"
+    android:elevation="2dp"
+    android:paddingTop="1dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:id="@+id/title"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/AdvSearch"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/common_signin_btn_dark_text_focused"
+        android:visibility="visible" />
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#000000"
+        android:src="@drawable/common_full_open_on_phone"
+        android:visibility="gone" />
+
+</android.support.v7.widget.Toolbar>

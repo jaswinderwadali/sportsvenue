@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/test"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom|center"
+    android:orientation="vertical"
+    tools:context="com.global.labs.sports.NavigationActivity$PlaceholderFragment">
+
+
+    <EditText
+        android:id="@+id/search_box"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="@dimen/sixty"
+        android:layout_marginBottom="@dimen/standardsize" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/standardsize"
+        android:text="New Button" />
+
+    <TextView
+        android:id="@+id/advance_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/sixty"
+        android:text="@string/AdvSearch"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+</LinearLayout>

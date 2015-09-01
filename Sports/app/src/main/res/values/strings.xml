@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Sports</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_startup">StartupActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_activity_one">ActivityOne</string>
+    <string name="one">Where you want to be ?</string>
+    <string name="two">Types of Sport ?</string>
+    <string name="Search">Search</string>
+    <string name="Sports">Sport</string>
+    <string name="AdvSearch"><u>Advance Search</u></string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="login_signup">Log In or Sign Up</string>
+
+    <string name="advancesearch"><u>Advance Search</u></string>
+
+
+    <string name="copyrights">\u0040 2014 All Rights Reserved</string>
+
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_test_two">TestTwo</string>
+    <string name="title_activity_tester">Tester</string>
+
+
+</resources>
+
