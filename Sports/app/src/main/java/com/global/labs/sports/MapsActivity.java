@@ -42,18 +42,15 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     private void setUpMap() {
         LatLng ltlg = new LatLng(12.953997, 77.6309395);
-
         mMap.addMarker(new MarkerOptions().position(ltlg).title("Marker"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ltlg, 15));
         mMap.animateCamera(CameraUpdateFactory.zoomIn());
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
         mMap.setOnMarkerClickListener(this);
-
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         startActivity(new Intent(MapsActivity.this, NavigationActivity.class));
         return false;
     }

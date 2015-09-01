@@ -30,6 +30,7 @@
     <string name="action_example">Example action</string>
     <string name="title_activity_test_two">TestTwo</string>
     <string name="title_activity_tester">Tester</string>
+    <string name="title_activity_result">ResultActivity</string>
 
 
 </resources>

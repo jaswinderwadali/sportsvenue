@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="com.global.labs.sports.NavigationActivity$PlaceholderFragment">
 
-
     <EditText
         android:id="@+id/search_box"
         android:layout_width="@dimen/navigation_drawer_width"
@@ -15,7 +14,7 @@
         android:layout_marginBottom="@dimen/standardsize" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/seacrhbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/standardsize"
@@ -28,6 +27,5 @@
         android:layout_marginBottom="@dimen/sixty"
         android:text="@string/AdvSearch"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
 
 </LinearLayout>
