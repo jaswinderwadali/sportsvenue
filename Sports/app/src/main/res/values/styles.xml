@@ -10,4 +10,6 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <color name="standard">#94A633</color>
 </resources>

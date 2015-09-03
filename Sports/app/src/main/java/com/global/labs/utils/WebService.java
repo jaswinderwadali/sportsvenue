@@ -1,4 +1,4 @@
-package com.global.labs.sports;
+package com.global.labs.utils;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -17,8 +17,10 @@ public class WebService extends AsyncTask<Void, Void, String> {
 
     String parms;
     Context ctx;
+    String mURL;
 
-    public WebService(String parms, Context ctx) {
+    public WebService(String parms, Context ctx, String mURL) {
+        this.mURL = mURL;
         this.parms = parms;
         this.ctx = ctx;
     }
@@ -37,19 +39,19 @@ public class WebService extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String str) {
         super.onPostExecute(str);
-        callback.Result(str,falg);
+        callback.Result(str, falg);
 
     }
 
-    boolean falg=true;
+    boolean falg = true;
+
     @Override
     protected String doInBackground(Void... params) {
 
         try {
             byte[] postData = parms.getBytes(Charset.forName("UTF-8"));
             int postDataLength = postData.length;
-            String request = "http://www.appzealous.com/iws/iOS_wallpaper/iPhone/categorylist.php";
-            URL url = new URL(request);
+            URL url = new URL(mURL);
             HttpURLConnection cox = (HttpURLConnection) url.openConnection();
             cox.setDoOutput(true);
             cox.setDoInput(true);
@@ -79,14 +81,10 @@ public class WebService extends AsyncTask<Void, Void, String> {
 
         } catch (Exception e) {
             e.printStackTrace();
-            falg=false;
+            falg = false;
             return e.toString();
         }
     }
 }
 
-interface ResultBack {
-    void Result(String str, boolean result);
 
-
-}

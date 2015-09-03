@@ -3,15 +3,16 @@
     android:id="@+id/draweritem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_signin_btn_light_text_default"
+    android:background="@color/wallet_bright_foreground_holo_light"
     android:padding="10dp">
 
 
-    <com.global.labs.sports.CircularImageView
+    <ImageView
         android:id="@+id/circuler"
         android:layout_width="@dimen/sixty"
         android:layout_height="@dimen/sixty"
-        android:src="@drawable/user" />
+        android:scaleType="center"
+        android:src="@drawable/usericon" />
 
     <TextView
         android:id="@+id/textView"
@@ -21,5 +22,5 @@
         android:gravity="center|left"
         android:text="@string/login_signup"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/common_signin_btn_light_text_pressed" />
+        android:textColor="@color/standard" />
 </LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sports</string>
+    <string name="app_name">Sports Venue</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_startup">StartupActivity</string>
 
@@ -9,15 +9,16 @@
     <string name="one">Where you want to be ?</string>
     <string name="two">Types of Sport ?</string>
     <string name="Search">Search</string>
+    <string name="Searchsportsvenue">Search Sports Venue</string>
     <string name="Sports">Sport</string>
     <string name="AdvSearch"><u>Advance Search</u></string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="login_signup">Log In or Sign Up</string>
 
-    <string name="advancesearch"><u>Advance Search</u></string>
+    <string name="advancesearch">Advance Search</string>
 
 
-    <string name="copyrights">\u0040 2014 All Rights Reserved</string>
+    <string name="copyrights">\u0040 2015 All Rights Reserved</string>
 
 
     <string name="title_section1">Section 1</string>

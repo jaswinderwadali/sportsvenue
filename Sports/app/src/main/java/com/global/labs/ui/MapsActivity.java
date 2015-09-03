@@ -1,9 +1,10 @@
-package com.global.labs.sports;
+package com.global.labs.ui;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.global.labs.sports.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -41,8 +42,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     }
 
     private void setUpMap() {
-        LatLng ltlg = new LatLng(12.953997, 77.6309395);
-        mMap.addMarker(new MarkerOptions().position(ltlg).title("Marker"));
+        String lati=getIntent().getStringExtra("Lat");
+        System.out.println(""+lati);
+        Float lat = Float.parseFloat(getIntent().getStringExtra("Lat"));
+        Float mlong = Float.parseFloat(getIntent().getStringExtra("Long"));
+        LatLng ltlg = new LatLng(lat, mlong);
+        mMap.addMarker(new MarkerOptions().position(ltlg).title(getIntent().getStringExtra("MARK")));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ltlg, 15));
         mMap.animateCamera(CameraUpdateFactory.zoomIn());
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
@@ -51,7 +56,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        startActivity(new Intent(MapsActivity.this, NavigationActivity.class));
+       // startActivity(new Intent(MapsActivity.this, NavigationActivity.class));
+
         return false;
     }
 }

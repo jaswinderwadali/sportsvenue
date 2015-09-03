@@ -1,4 +1,4 @@
-package com.global.labs.sports;
+package com.global.labs.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,18 +7,23 @@ import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.global.labs.sports.R;
 
 
 public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHolder> implements View.OnClickListener {
 
     String[] items;
     Context ctx;
+    int[] ids;
 
-    public Drawer_Adapter(String[] items, Context ctx) {
+    public Drawer_Adapter(String[] items, Context ctx, int[] ids) {
         this.items = items;
         this.ctx = ctx;
+        this.ids = ids;
     }
 
     @Override
@@ -121,7 +126,10 @@ public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHol
                 default:
                     TextView tv = (TextView) itemView.findViewById(R.id.textView);
                     tv.setText(items[type - 1]);
+                    ImageView iv = (ImageView) itemView.findViewById(R.id.imageView);
+                    iv.setImageResource(ids[type - 1]);
                     break;
+
 
             }
         }

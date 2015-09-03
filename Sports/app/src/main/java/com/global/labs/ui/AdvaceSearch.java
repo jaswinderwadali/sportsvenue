@@ -1,4 +1,4 @@
-package com.global.labs.sports;
+package com.global.labs.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.global.labs.sports.R;
 
 
 public class AdvaceSearch extends AppCompatActivity implements View.OnClickListener {

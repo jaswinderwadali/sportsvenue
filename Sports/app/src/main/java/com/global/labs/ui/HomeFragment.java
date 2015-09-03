@@ -1,4 +1,4 @@
-package com.global.labs.sports;
+package com.global.labs.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -6,11 +6,21 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.global.labs.common.Constants;
+import com.global.labs.common.JsonParsing;
+import com.global.labs.common.SeachModel;
+import com.global.labs.sports.R;
+import com.global.labs.utils.ResultBack;
+import com.global.labs.utils.WebService;
+
+import org.json.JSONException;
+
+import java.util.List;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -54,13 +64,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         dilog.setMessage("Searching....");
         dilog.setCancelable(false);
         dilog.show();
-        WebService web = new WebService(searchbox.getText().toString(), getContext());
+        WebService web = new WebService("searchString=" + searchbox.getText().toString(), getContext(), Constants.URL + "/getSearchResults");
         web.Result(new ResultBack() {
             @Override
             public void Result(String str, boolean status) {
                 dilog.dismiss();
                 if (status)
-                    getContext().startActivity(new Intent(getContext(), ResultActivity.class).putExtra("DATA", str));
+                    if (JsonParsing.HasData(str))
+                        getContext().startActivity(new Intent(getContext(), ResultActivity.class).putExtra("DATA", str));
+                    else
+                        Snackbar.make(getActivity().findViewById(R.id.textView), "Result Not Found..", Snackbar.LENGTH_SHORT).show();
                 else
                     Snackbar.make(getActivity().findViewById(R.id.textView), "Error", Snackbar.LENGTH_SHORT).show();
             }

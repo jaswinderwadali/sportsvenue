@@ -1,4 +1,4 @@
-package com.global.labs.sports;
+package com.global.labs.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,6 +17,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import com.global.labs.sports.R;
 
 public class CircularImageView extends ImageView {
     // Border & Selector configuration variables

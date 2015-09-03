@@ -8,6 +8,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/standardsize"
+        android:scaleType="center"
         android:layout_height="@dimen/standardsize"
         android:layout_marginLeft="@dimen/paddingtwenty" />
 
