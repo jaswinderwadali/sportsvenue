@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.global.labs.sports">
+    package="com.global.labs.sports" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <!--
- The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but are recommended.
-    -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/appiconnew"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -29,16 +25,21 @@
             android:name="com.global.labs.ui.AdvaceSearch"
             android:label="@string/title_activity_maps"
             android:parentActivityName="com.global.labs.ui.NavigationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.global.labs.ui.MapsActivity"
-            android:label="@string/title_activity_startup" />
+            android:label="@string/title_activity_startup"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.global.labs.ui.NavigationActivity"
-            android:label="@string/title_activity_navigation"
+            android:icon="@drawable/logoicon"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +48,18 @@
         </activity>
         <activity
             android:name="com.global.labs.ui.ResultActivity"
-            android:label="@string/title_activity_result"></activity>
+            android:label="@string/title_activity_result"
+            android:parentActivityName="com.global.labs.ui.NavigationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.global.labs.ui.DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.global.labs.ui.Result_Add"
+            android:label="@string/title_activity_result__add" >
+        </activity>
     </application>
 
 </manifest>

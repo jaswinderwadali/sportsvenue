@@ -1,29 +1,61 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    android:gravity="center|bottom"
+
     android:orientation="vertical"
     tools:context="com.global.labs.ui.NavigationActivity$PlaceholderFragment">
 
-    <EditText
-        android:id="@+id/search_box"
-        android:layout_width="@dimen/navigation_drawer_width"
+
+    <LinearLayout
+        android:id="@+id/llone"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/sixty"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/roundstyle"
-        android:drawableLeft="@drawable/location"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:hint="@string/Searchsportsvenue"
-        android:padding="10dp" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/search_box"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundstyle"
+            android:drawableLeft="@drawable/location"
+            android:gravity="center"
+            android:hint="@string/Searchsportsvenue"
+            android:padding="5dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundstyle"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinerlocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:padding="5dp"></Spinner>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/seacrhbutton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_below="@+id/llone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:background="@drawable/roundstyleddefalt"
         android:padding="10dp"
         android:text="@string/Search"
@@ -33,9 +65,10 @@
         android:id="@+id/advance_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_below="@+id/seacrhbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:text="@string/AdvSearch"
-        android:textColor="@color/common_signin_btn_dark_text_default"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-</LinearLayout>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/common_signin_btn_dark_text_default" />
+</RelativeLayout>

@@ -55,6 +55,7 @@ public class WebService extends AsyncTask<Void, Void, String> {
             HttpURLConnection cox = (HttpURLConnection) url.openConnection();
             cox.setDoOutput(true);
             cox.setDoInput(true);
+            cox.setConnectTimeout(5000);
             cox.setInstanceFollowRedirects(false);
             cox.setRequestMethod("POST");
             cox.setRequestProperty("Content-Type",

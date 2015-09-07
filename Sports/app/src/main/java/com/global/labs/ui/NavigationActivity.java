@@ -11,6 +11,7 @@ import android.view.View;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
 
+import com.global.labs.adapters.Drawer_Adapter;
 import com.global.labs.sports.R;
 
 public class NavigationActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        TextView header=(TextView)toolbar.findViewById(R.id.title);
+        TextView header = (TextView) toolbar.findViewById(R.id.title);
         header.setText(R.string.app_name);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -59,30 +60,23 @@ public class NavigationActivity extends AppCompatActivity {
 //
 //            }
 //        });
-
-        //        mDrawerToggle.setDrawerIndicatorEnabled(false);
-        //      toolbar.setNavigationIcon(R.drawable.ic_play_light);
+//        mDrawerToggle.setDrawerIndicatorEnabled(false);
+//        toolbar.setNavigationIcon(R.drawable.ic_play_light);
 
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.LeftDrawer);
-        String[] str = {"Home", "About", "Blog", "Help & Feedback", "Contact Us"};
-        int[] ids = {R.drawable.homeicon, R.drawable.about, R.drawable.blog, R.drawable.help_feedback, R.drawable.contactus};
-        Drawer_Adapter adapter = new Drawer_Adapter(str, this, ids);
+        String[] str = {"Home", "About", "Help & Feedback", "Contact Us"};
+        int[] ids = {R.drawable.homeicon, R.drawable.about, R.drawable.help_feedback, R.drawable.contactus};
+        Drawer_Adapter adapter = new Drawer_Adapter(str, this, ids, getSupportFragmentManager(), Drawer);
         rv.setAdapter(adapter);
         LinearLayoutManager mgr = new LinearLayoutManager(this);
         mgr.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(mgr);
-//        rv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
         changefragment();
+
     }
 
 

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/wallet_bright_foreground_holo_dark">
+    android:background="#C0C0C0">
 
     <include
         android:id="@+id/custumactionbar"
@@ -25,15 +25,20 @@
             android:text="@string/one"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-        <Spinner
-            android:id="@+id/cityspiner"
+        <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/common_signin_btn_light_text_pressed"
-            android:padding="10dp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:background="@drawable/roundstyle"
+            android:padding="10dp">
+
+            <Spinner
+                android:id="@+id/cityspiner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="300dp"
@@ -43,15 +48,19 @@
             android:text="@string/two"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-        <Spinner
-            android:id="@+id/sportsspiner"
+        <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/common_signin_btn_light_text_pressed"
-            android:padding="10dp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:background="@drawable/roundstyle"
+            android:padding="10dp">
+
+            <Spinner
+                android:id="@+id/sportsspiner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/searchtv"
@@ -59,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
-            android:background="@color/common_signin_btn_light_text_focused"
+            android:background="@drawable/roundstyleddefalt"
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/Search"

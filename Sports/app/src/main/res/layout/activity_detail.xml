@@ -1,0 +1,166 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C0C0C0"
+    android:orientation="vertical"
+    tools:context="com.global.labs.ui.DetailActivity">
+
+
+    <include
+        android:id="@+id/detailbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/wallet_bright_foreground_holo_light">
+
+                    <android.support.v4.view.ViewPager xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp" />
+
+                    <LinearLayout
+                        android:id="@+id/dotslayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/showmapll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundstyle"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logoicon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/Showmap"
+                        android:textColor="@color/wallet_primary_text_holo_light"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundstyle"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/suitfor"
+
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/standard"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/gametv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/Mainly"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/wallet_primary_text_holo_light" />
+
+                    <TextView
+                        android:id="@+id/gameinfo"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Ocassionally used for conducting some big events."
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/wallet_primary_text_holo_light" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundstyle"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/Address"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/standard"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/adresstv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="M Chinnaswamy Stadium MG Road, Near Gandhi Park Near Anil Kumble Circle Bengaluru, Karnataka 560001"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/wallet_primary_text_holo_light" />
+
+                    <TextView
+                        android:id="@+id/Contactno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/Contact"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/wallet_primary_text_holo_light" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </ScrollView>
+</LinearLayout>

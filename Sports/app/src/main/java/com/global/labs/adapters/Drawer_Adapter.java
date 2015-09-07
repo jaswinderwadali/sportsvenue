@@ -1,8 +1,11 @@
-package com.global.labs.ui;
+package com.global.labs.adapters;
 
 import android.content.Context;
-import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -12,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.global.labs.sports.R;
+import com.global.labs.ui.About;
+import com.global.labs.ui.Feedback;
+import com.global.labs.ui.HomeFragment;
 
 
 public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHolder> implements View.OnClickListener {
@@ -19,11 +25,16 @@ public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHol
     String[] items;
     Context ctx;
     int[] ids;
+    FragmentManager fmg;
+    DrawerLayout dwlayout;
 
-    public Drawer_Adapter(String[] items, Context ctx, int[] ids) {
+    public Drawer_Adapter(String[] items, Context ctx, int[] ids, FragmentManager fmg, DrawerLayout dwlayout) {
         this.items = items;
         this.ctx = ctx;
         this.ids = ids;
+        this.fmg = fmg;
+        this.dwlayout = dwlayout;
+
     }
 
     @Override
@@ -43,7 +54,7 @@ public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHol
 
     @Override
     public int getItemCount() {
-        return 7;
+        return 6;
     }
 
 
@@ -58,7 +69,7 @@ public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHol
                 view.setOnClickListener(this);
                 view.setTag(viewType);
                 break;
-            case 6:
+            case 5:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.end, parent, false);
                 view.setOnClickListener(this);
                 view.setTag(viewType);
@@ -71,35 +82,29 @@ public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHol
         }
         return holder = new Drawer_Adapter.LocalHolder(view, viewType);
 
+
     }
 
     @Override
     public void onClick(View v) {
         int viewType = (Integer) v.getTag();
 
-
+        dwlayout.closeDrawer(Gravity.LEFT);
         switch (viewType) {
 
             case 0:
                 break;
             case 1:
-                ctx.startActivity(new Intent(ctx, AdvaceSearch.class));
+                //     ctx.startActivity(new Intent(ctx, AdvaceSearch.class));
+                changefragment(new HomeFragment());
                 break;
             case 2:
-
-//                Snackbar snack = Snackbar.make(v.findViewById(R.id.textView), "Test", Snackbar.LENGTH_SHORT);
-//                View view = snack.getView();
-//                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-//                params.gravity = Gravity.TOP;
-//                view.setLayoutParams(params);
-//                snack.show();
-
+                changefragment(new About());
                 break;
             case 3:
+                changefragment(new Feedback());
                 break;
             case 4:
-                break;
-            case 5:
                 break;
 
             default:
@@ -120,7 +125,7 @@ public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHol
                 case 0:
 
                     break;
-                case 6:
+                case 5:
 
                     break;
                 default:
@@ -141,5 +146,10 @@ public class Drawer_Adapter extends RecyclerView.Adapter<Drawer_Adapter.LocalHol
             Toast.makeText(ctx, "Undo Done", Toast.LENGTH_SHORT).show();
         }
     };
+
+
+    void changefragment(Fragment fragment) {
+        fmg.beginTransaction().replace(R.id.container, fragment).commit();
+    }
 
 }

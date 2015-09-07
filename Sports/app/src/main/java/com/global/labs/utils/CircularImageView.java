@@ -1,4 +1,4 @@
-package com.global.labs.ui;
+package com.global.labs.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -28,7 +28,6 @@ public class CircularImageView extends ImageView {
     private int borderWidth;
     private int canvasSize;
     private int selectorStrokeWidth;
-
     // Objects used for the actual drawing
     private BitmapShader shader;
     private Bitmap image;

@@ -2,9 +2,15 @@
     <string name="app_name">Sports Venue</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_startup">StartupActivity</string>
+    <string name="about">\t\t\tSports Venue has been designed to help sports enthusiasts discover unknown venues to play and find out useful information about them which is currently not available anywhere else.\n\n \t\tWe will soon be launching more features to help connect enthusiasts with each other for playing at venues, all at the click of a button.</string>
+    <string name="feedback">For any queries and suggestions please mail to <u> mikhail.mitra@mantralabsglobal.com </u> </string>
+
+
 
     <string name="hello_world">Hello world!</string>
+
     <string name="action_settings">Settings</string>
+    <string name="showmap">Show MapView</string>
     <string name="title_activity_activity_one">ActivityOne</string>
     <string name="one">Where you want to be ?</string>
     <string name="two">Types of Sport ?</string>
@@ -14,13 +20,14 @@
     <string name="AdvSearch"><u>Advance Search</u></string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="login_signup">Log In or Sign Up</string>
+    <string name="suitfor">Suitable For</string>
+    <string name="Mainly">Mainly :</string>
+    <string name="Address">Address</string>
+    <string name="Contact">Contact :</string>
+    <string name="Showmap">Click here to Show Map</string>
 
     <string name="advancesearch">Advance Search</string>
-
-
     <string name="copyrights">\u0040 2015 All Rights Reserved</string>
-
-
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
@@ -32,6 +39,9 @@
     <string name="title_activity_test_two">TestTwo</string>
     <string name="title_activity_tester">Tester</string>
     <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_result__add">Result_Add</string>
+    <string name="title_activity_test">Test</string>
 
 
 </resources>
