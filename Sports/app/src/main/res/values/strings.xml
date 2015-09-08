@@ -6,8 +6,10 @@
     <string name="feedback">For any queries and suggestions please mail to <u> mikhail.mitra@mantralabsglobal.com </u> </string>
 
 
-
     <string name="hello_world">Hello world!</string>
+    <string name="missingvanue">Are we missing any sports venue ? \nDo let us know at <u>mikhail.mitra@mantralabsglobal.com</u></string>
+    <string name="resultnotfound">No Sports Venues found.\nWe are constantly adding new venues.</string>
+    <string name="searchmore">Go Back To Search</string>
 
     <string name="action_settings">Settings</string>
     <string name="showmap">Show MapView</string>

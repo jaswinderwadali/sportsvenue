@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 if (Internet.getInstance().internetConnectivity(getActivity()))
                     searchcall();
                 else
-                    Toast.makeText(getContext(), "Please Check Internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please Check Internet", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.advance_search:
                 startActivity(new Intent(getActivity(), AdvaceSearch.class));
@@ -73,21 +73,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ProgressDialog dilog;
 
     private void searchcall() {
-        dilog = new ProgressDialog(getContext());
+        dilog = new ProgressDialog(getActivity());
         dilog.setMessage("Searching....");
         dilog.setCancelable(false);
         dilog.show();
         hidekeyboad();
-        WebService web = new WebService("searchString=" + searchbox.getText().toString(), getContext(), Constants.URL + "/getSearchResults");
+        WebService web = new WebService("searchString=" + searchbox.getText().toString(), getActivity(), Constants.URL + "/getSearchResults");
         web.Result(new ResultBack() {
             @Override
             public void Result(String str, boolean status) {
                 dilog.dismiss();
                 if (status)
                     if (JsonParsing.HasData(str))
-                        getContext().startActivity(new Intent(getContext(), ResultActivity.class).putExtra("DATA", str));
-                    else
+                        getActivity().startActivity(new Intent(getActivity(), ResultActivity.class).putExtra("DATA", str));
+                    else {
+                        getFragmentManager().beginTransaction().replace(R.id.container, new Result_Add()).commit();
                         Snackbar.make(getActivity().findViewById(R.id.textView), "Result Not Found..", Snackbar.LENGTH_SHORT).show();
+                    }
                 else
                     Snackbar.make(getActivity().findViewById(R.id.textView), "Error", Snackbar.LENGTH_SHORT).show();
             }

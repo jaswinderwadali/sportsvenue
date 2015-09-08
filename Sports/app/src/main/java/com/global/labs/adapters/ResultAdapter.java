@@ -2,6 +2,7 @@ package com.global.labs.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.global.labs.common.Constants;
 import com.global.labs.common.SeachModel;
 import com.global.labs.sports.R;
 import com.global.labs.ui.DetailActivity;
-import com.global.labs.ui.MapsActivity;
 
 import java.util.List;
 
@@ -56,7 +57,17 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> im
 
     @Override
     public void onClick(View v) {
-        ctx.startActivity(new Intent(ctx, DetailActivity.class).putExtra("Lat", Datalist.get((Integer) v.getTag()).getLat()).putExtra("Long", Datalist.get((Integer) v.getTag()).getMlong()).putExtra("MARK", Datalist.get((Integer) v.getTag()).getGroundName()));
+
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.ADDRESS, Datalist.get((Integer) v.getTag()).getAddress());
+        bundle.putString(Constants.INFO, Datalist.get((Integer) v.getTag()).getGroundInfo());
+        bundle.putString(Constants.PHONENO, Datalist.get((Integer) v.getTag()).getPhoneNum());
+        bundle.putString(Constants.GROUNDNAME, Datalist.get((Integer) v.getTag()).getGroundName());
+        bundle.putString(Constants.AREA, Datalist.get((Integer) v.getTag()).getArea());
+        bundle.putString(Constants.CITY, Datalist.get((Integer) v.getTag()).getCity());
+
+
+        ctx.startActivity(new Intent(ctx, DetailActivity.class).putExtra("Lat", Datalist.get((Integer) v.getTag()).getLat()).putExtra("Long", Datalist.get((Integer) v.getTag()).getMlong()).putExtra("MARK", Datalist.get((Integer) v.getTag()).getGroundName()).putExtras(bundle));
     }
 
     class Holder extends RecyclerView.ViewHolder {

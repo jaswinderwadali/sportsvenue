@@ -1,11 +1,9 @@
 package com.global.labs.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
@@ -15,9 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.global.labs.adapters.PagerAdapter;
+import com.global.labs.common.Constants;
 import com.global.labs.sports.R;
-
-import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,7 +38,18 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     void get_Ids() {
         LinearLayout showmapll = (LinearLayout) findViewById(R.id.showmapll);
         showmapll.setOnClickListener(this);
+        TextView gameinfo = (TextView) findViewById(R.id.gameinfo);
+        TextView adresstv = (TextView) findViewById(R.id.adresstv);
+        TextView Contactno = (TextView) findViewById(R.id.Contactno);
 
+
+        Bundle bundle = getIntent().getExtras();
+        adresstv.setText(bundle.getString(Constants.ADDRESS));
+        gameinfo.setText(bundle.getString(Constants.INFO));
+        Contactno.setText("ContactNo : " + bundle.getString(Constants.PHONENO));
+        bundle.getString(Constants.GROUNDNAME);
+        bundle.getString(Constants.AREA);
+        bundle.getString(Constants.CITY);
     }
 
     void pagersetup() {
@@ -65,10 +73,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(30);
-            dots[i].setTextColor(ContextCompat.getColor(this, R.color.standard));
+            dots[i].setTextColor(getResources().getColor(R.color.standard));
             dotslayout.addView(dots[i]);
         }
-        dots[0].setTextColor(ContextCompat.getColor(this, R.color.common_action_bar_splitter));
+        dots[0].setTextColor(getResources().getColor(R.color.common_action_bar_splitter));
 
 
     }
@@ -84,9 +92,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onPageSelected(int position) {
             for (int i = 0; i < dotsCount; i++) {
-                dots[i].setTextColor(ContextCompat.getColor(DetailActivity.this, R.color.standard));
+                dots[i].setTextColor(getResources().getColor(R.color.standard));
             }
-            dots[position].setTextColor(ContextCompat.getColor(DetailActivity.this, R.color.common_action_bar_splitter));
+            dots[position].setTextColor(getResources().getColor(R.color.common_action_bar_splitter));
         }
 
         @Override
