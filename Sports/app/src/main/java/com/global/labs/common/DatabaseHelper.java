@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import org.json.JSONArray;
+
 /**
  * Created by Mantra on 9/8/2015.
  */
@@ -39,16 +41,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void InsertMainTable(SeachModel data) throws Exception {
+    public void InsertMainTable(JsonModel data) throws Exception {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
-        value.put(Constants.AREA, data.getArea());
-        value.put(Constants.CITY, data.getCity());
-        value.put(Constants.GAMENAME, data.getSport());
-        value.put(Constants.ID, data.getId());
+        value.put(Constants.AREA, data.getAreaList().toString());
+        value.put(Constants.CITY, data.getCityList().toString());
+        value.put(Constants.GAMENAME, data.getSportList().toString());
+        value.put(Constants.ID, "1");
 
         double ss = db.update(Constants.TABLENAME, value,
-                Constants.ID + " = " + data.getId(), null);
+                Constants.ID + " = 1", null);
         if (ss == 0.0) {
             db.insert(Constants.TABLENAME, null, value);
         }
@@ -57,24 +59,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public SeachModel getMaintabledata(String UID) throws Exception {
+    public JsonModel getMaintabledata(String UID) throws Exception {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor crs = db.rawQuery("SELECT * FROM " + Constants.TABLENAME + " WHERE "
                 + Constants.ID + "=" + UID + "", null);
-        SeachModel data = null;
+        JsonModel data = null;
 
         if (crs != null) {
             if (crs.moveToFirst()) {
                 while (crs.isAfterLast() == false) {
-
-                    data = new SeachModel();
-                    data.setCity(crs.getString(crs.getColumnIndex(Constants.CITY)));
-                    data.setId(crs.getString(crs.getColumnIndex(Constants.ID)));
-                    data.setArea((crs.getString(crs.getColumnIndex(Constants.AREA))));
-                    data.setSport(crs.getString(crs.getColumnIndex(Constants.GAMENAME)));
+                    data = new JsonModel();
+                    data.setCityList(new JSONArray(crs.getString(crs.getColumnIndex(Constants.CITY))));
+                    data.setAreaList(new JSONArray(crs.getString(crs.getColumnIndex(Constants.AREA))));
+                    data.setSportList(new JSONArray(crs.getString(crs.getColumnIndex(Constants.GAMENAME))));
                     crs.moveToNext();
                 }
-
             }
             crs.close();
             db.close();

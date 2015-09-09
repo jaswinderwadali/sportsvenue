@@ -16,6 +16,7 @@ public class Constants {
     public static int DATABASEVERSION = 1;
     public static String TABLENAME="TABLEONE";
     public static String ID="ID";
+    public static boolean CHECK=false;
 
 
 

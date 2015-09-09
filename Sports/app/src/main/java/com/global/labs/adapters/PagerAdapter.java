@@ -8,9 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
-import com.global.labs.sports.R;
+import com.global.labs.R;
 
 /**
  * Created by Mantra on 9/4/2015.

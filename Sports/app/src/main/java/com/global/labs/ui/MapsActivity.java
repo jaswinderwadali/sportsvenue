@@ -9,11 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.global.labs.common.GMapV2Direction;
 import com.global.labs.common.JsonParsing;
 import com.global.labs.common.SeachModel;
-import com.global.labs.sports.R;
+import com.global.labs.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -153,29 +154,38 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
         @Override
         protected PolylineOptions doInBackground(String... strings) {
 
-            GMapV2Direction md = new GMapV2Direction();
-            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-            String lati = getIntent().getStringExtra("Lat");
-            System.out.println("" + lati);
-            Float lat = Float.parseFloat(getIntent().getStringExtra("Lat"));
-            Float mlong = Float.parseFloat(getIntent().getStringExtra("Long"));
-            LatLng ltlg = new LatLng(lat, mlong);
+            PolylineOptions rectLine = null;
+            try {
 
-            Document doc = md.getDocument(loc, ltlg, GMapV2Direction.MODE_DRIVING);
+                GMapV2Direction md = new GMapV2Direction();
+                LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+                String lati = getIntent().getStringExtra("Lat");
+                System.out.println("" + lati);
+                Float lat = Float.parseFloat(getIntent().getStringExtra("Lat"));
+                Float mlong = Float.parseFloat(getIntent().getStringExtra("Long"));
+                LatLng ltlg = new LatLng(lat, mlong);
+                Document doc = md.getDocument(loc, ltlg, GMapV2Direction.MODE_DRIVING);
+                ArrayList<LatLng> directionPoint = md.getDirection(doc);
+                rectLine = new PolylineOptions().width(3).color(getResources().getColor(R.color.standard));
 
-            ArrayList<LatLng> directionPoint = md.getDirection(doc);
-            PolylineOptions rectLine = new PolylineOptions().width(3).color(getResources().getColor(R.color.standard));
+                for (int i = 0; i < directionPoint.size(); i++) {
+                    rectLine.add(directionPoint.get(i));
+                }
+                return rectLine;
 
-            for (int i = 0; i < directionPoint.size(); i++) {
-                rectLine.add(directionPoint.get(i));
+            } catch (Exception e) {
+                return null;
             }
-            return rectLine;
         }
 
         @Override
         protected void onPostExecute(PolylineOptions s) {
             super.onPostExecute(s);
-            mMap.addPolyline(s);
+            if (s != null)
+                mMap.addPolyline(s);
+            else
+                 Toast.makeText(MapsActivity.this, "Connectivity Error", Toast.LENGTH_SHORT).show();
+
         }
 
     }

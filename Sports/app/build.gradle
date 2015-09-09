@@ -27,6 +27,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'com.android.support:design:22.2.0'
     compile 'org.apache.httpcomponents:httpcore:4.2.2'
+    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
 //    compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
 
 }

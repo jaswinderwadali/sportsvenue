@@ -10,6 +10,7 @@
     <string name="missingvanue">Are we missing any sports venue ? \nDo let us know at <u>mikhail.mitra@mantralabsglobal.com</u></string>
     <string name="resultnotfound">No Sports Venues found.\nWe are constantly adding new venues.</string>
     <string name="searchmore">Go Back To Search</string>
+    <string name="facebook_app_id">419007411630448</string>
 
     <string name="action_settings">Settings</string>
     <string name="showmap">Show MapView</string>
@@ -44,6 +45,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_result__add">Result_Add</string>
     <string name="title_activity_test">Test</string>
+    <string name="title_activity_login_with">Login_with</string>
 
 
 </resources>

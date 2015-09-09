@@ -1,18 +1,24 @@
 package com.global.labs.ui;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
 
+import com.global.labs.R;
 import com.global.labs.adapters.Drawer_Adapter;
-import com.global.labs.sports.R;
+import com.global.labs.common.Constants;
+import com.global.labs.common.DatabaseHelper;
+import com.global.labs.common.JsonParsing;
+import com.global.labs.utils.Interface_Result;
+import com.global.labs.utils.WebserviceGET;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -76,6 +82,42 @@ public class NavigationActivity extends AppCompatActivity {
         mgr.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(mgr);
         changefragment();
+        if (!Constants.CHECK) {
+            searchcall();
+            Constants.CHECK = true;
+        }
+    }
+
+
+    ProgressDialog dilog;
+
+    private void searchcall() {
+        dilog = new ProgressDialog(this);
+        dilog.setMessage("Please Wait....");
+        dilog.setCancelable(false);
+        dilog.show();
+        WebserviceGET getweb = new WebserviceGET(this, Constants.URL + "/fetchCityDetails");
+        getweb.Result(new Interface_Result() {
+            @Override
+            public void Success(String str) {
+                dilog.dismiss();
+                try {
+                    DatabaseHelper.getInstance(NavigationActivity.this).InsertMainTable(new JsonParsing().Maindata(str));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Constants.CHECK = false;
+
+                }
+            }
+
+            @Override
+            public void Error(String message) {
+                dilog.dismiss();
+                Snackbar.make(findViewById(R.id.textView), "Error", Snackbar.LENGTH_SHORT).show();
+
+            }
+        });
+        getweb.execute();
 
     }
 

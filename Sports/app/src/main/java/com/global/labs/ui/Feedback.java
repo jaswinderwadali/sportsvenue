@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.global.labs.sports.R;
+import com.global.labs.R;
 
 /**
  * Created by Mantra on 9/7/2015.

@@ -4,12 +4,10 @@ package com.global.labs.utils;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.global.labs.sports.R;
+import com.global.labs.R;
 
 public class LogoutDialog extends Dialog {
 

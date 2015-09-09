@@ -1,9 +1,5 @@
 package com.global.labs.utils;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
@@ -19,7 +15,11 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.global.labs.sports.R;
+import com.global.labs.R;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 
 public class GetLatlong extends Service implements LocationListener {

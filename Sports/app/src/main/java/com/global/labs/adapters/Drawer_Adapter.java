@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.global.labs.sports.R;
+import com.global.labs.R;
 import com.global.labs.ui.About;
 import com.global.labs.ui.Feedback;
 import com.global.labs.ui.HomeFragment;

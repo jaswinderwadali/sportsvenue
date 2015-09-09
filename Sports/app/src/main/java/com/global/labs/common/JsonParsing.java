@@ -54,5 +54,32 @@ public class JsonParsing {
         }
     }
 
+    public JsonModel Maindata(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            JsonModel model = new JsonModel();
+            model.setAreaList(jsonObject.optJSONArray("areaList"));
+            model.setCityList(jsonObject.optJSONArray("cityList"));
+            model.setSportList(jsonObject.optJSONArray("sportList"));
+            return model;
+        } catch (JSONException ex) {
+            return null;
+        }
+    }
+
+
+  public   List<String> jsonarraytolist(JSONArray array) {
+        List<String> list = new ArrayList<>();
+        try {
+            for (int i = 0; i < array.length(); i++) {
+                list.add(array.getString(i));
+            }
+            return list;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 }

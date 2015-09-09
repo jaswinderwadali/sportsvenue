@@ -3,10 +3,10 @@ package com.global.labs.ui;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +16,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.global.labs.R;
 import com.global.labs.common.Constants;
+import com.global.labs.common.DatabaseHelper;
 import com.global.labs.common.JsonParsing;
-import com.global.labs.sports.R;
 import com.global.labs.utils.Internet;
 import com.global.labs.utils.ResultBack;
 import com.global.labs.utils.WebService;
+
+import java.util.List;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -40,14 +43,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    String[] Sportarray = {"--Select City --", "Bangalore"};
-
+    List<String> Sportarray ;
     void spinersetup(View view) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.spiner_item, Sportarray);
-        Spinner spiner = (Spinner) view.findViewById(R.id.spinerlocation);
-        spiner.setAdapter(adapter);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        try {
+            Sportarray=  new  JsonParsing().jsonarraytolist(DatabaseHelper.getInstance(getActivity()).getMaintabledata("1").getCityList());
+            Sportarray.add(0,"--Select City --");
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                    R.layout.spiner_item, Sportarray);
+            Spinner spiner = (Spinner) view.findViewById(R.id.spinerlocation);
+            spiner.setAdapter(adapter);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        } catch (Exception  e) {
+
+        }
+
 //      spiner.setOnItemSelectedListener(itemseletc);
     }
 
@@ -78,7 +87,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         dilog.setCancelable(false);
         dilog.show();
         hidekeyboad();
-        WebService web = new WebService("searchString=" + searchbox.getText().toString(), getActivity(), Constants.URL + "/getSearchResults");
+        WebService web = new WebService("searchString=" + searchbox.getText().toString()+"&searchCity=bangalore", getActivity(), Constants.URL + "/getSearchResults");
         web.Result(new ResultBack() {
             @Override
             public void Result(String str, boolean status) {

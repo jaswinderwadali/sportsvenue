@@ -1,8 +1,8 @@
 package com.global.labs.ui;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -10,11 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.global.labs.R;
 import com.global.labs.adapters.ResultAdapter;
 import com.global.labs.common.JsonParsing;
 import com.global.labs.common.SeachModel;
-import com.global.labs.sports.R;
-import com.google.android.gms.maps.model.Marker;
 
 import org.json.JSONException;
 

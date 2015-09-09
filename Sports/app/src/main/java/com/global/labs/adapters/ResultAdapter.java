@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.global.labs.common.Constants;
 import com.global.labs.common.SeachModel;
-import com.global.labs.sports.R;
+import com.global.labs.R;
 import com.global.labs.ui.DetailActivity;
 
 import java.util.List;

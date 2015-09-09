@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.global.labs.adapters.PagerAdapter;
 import com.global.labs.common.Constants;
-import com.global.labs.sports.R;
+import com.global.labs.R;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,7 +46,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         Bundle bundle = getIntent().getExtras();
         adresstv.setText(bundle.getString(Constants.ADDRESS));
         gameinfo.setText(bundle.getString(Constants.INFO));
-        Contactno.setText("ContactNo : " + bundle.getString(Constants.PHONENO));
+//        Contactno.setText("ContactNo : " + bundle.getString(Constants.PHONENO));
         bundle.getString(Constants.GROUNDNAME);
         bundle.getString(Constants.AREA);
         bundle.getString(Constants.CITY);
