@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/roundstyle"
+            android:background="#FFFFFF"
+            android:singleLine="true"
             android:drawableLeft="@drawable/location"
             android:gravity="center"
             android:hint="@string/Searchsportsvenue"
@@ -35,7 +36,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/roundstyle"
+            android:background="#FFFFFF"
             android:orientation="horizontal">
 
             <Spinner

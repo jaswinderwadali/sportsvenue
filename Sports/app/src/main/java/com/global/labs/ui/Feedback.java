@@ -17,6 +17,14 @@ import com.global.labs.R;
 public class Feedback extends Fragment {
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        NavigationActivity.resultnotfound = false;
+    }
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +42,7 @@ public class Feedback extends Fragment {
             }
         });
 
+        NavigationActivity.resultnotfound=true;
         return view;
     }
 }

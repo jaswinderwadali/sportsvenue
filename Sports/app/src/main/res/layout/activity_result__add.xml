@@ -10,22 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/roundstyle"
+        android:background="#FFFFFF"
         android:padding="10dp"
         android:text="@string/resultnotfound"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/abc_input_method_navigation_guard" />
+        android:textColor="#646464" />
 
     <TextView
         android:id="@+id/dousknow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/roundstyle"
+        android:background="#FFFFFF"
         android:padding="10dp"
         android:text="@string/missingvanue"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/abc_input_method_navigation_guard" />
+        android:textColor="#646464" />
 
 
     <TextView

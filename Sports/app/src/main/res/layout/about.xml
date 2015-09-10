@@ -10,14 +10,15 @@
 
     <TextView
         android:id="@+id/abouttv"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginTop="10dp"
-        android:background="@drawable/roundstyle"
+        android:background="#FFFFFF"
+        android:gravity="left"
         android:padding="10dp"
         android:text="@string/about"
-        android:textColor="@color/wallet_bright_foreground_holo_light" />
+        android:textColor="#646464" />
 
 
 </LinearLayout>

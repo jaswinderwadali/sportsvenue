@@ -1,5 +1,7 @@
 package com.global.labs.common;
 
+import java.util.List;
+
 /**
  * Created by Mantra on 9/3/2015.
  */
@@ -131,6 +133,16 @@ public class SeachModel {
     String createdAt;
     String updatedAt;
     String id;
+
+    public List<String> getImageurls() {
+        return Imageurls;
+    }
+
+    public void setImageurls(List<String> imageurls) {
+        Imageurls = imageurls;
+    }
+
+    List<String> Imageurls;
 
 
 }

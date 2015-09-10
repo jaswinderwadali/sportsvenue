@@ -31,6 +31,15 @@ public class JsonParsing {
             model.setLat(mlatlong.optString("x"));
             model.setMlong(mlatlong.optString("y"));
 
+            if (inerobj.has("imageURL")) {
+                JSONArray imagearray = inerobj.optJSONArray("imageURL");
+                List<String> images = new ArrayList<>();
+                for (int x = 0; x < imagearray.length(); x++) {
+                    images.add(imagearray.optString(x));
+                }
+                model.setImageurls(images);
+            }
+
             model.setRating(inerobj.optString("rating"));
             model.setRatingCount(inerobj.optString("ratingCount"));
             model.setPhoneNum(inerobj.optString("phoneNum"));
@@ -68,7 +77,7 @@ public class JsonParsing {
     }
 
 
-  public   List<String> jsonarraytolist(JSONArray array) {
+    public List<String> jsonarraytolist(JSONArray array) {
         List<String> list = new ArrayList<>();
         try {
             for (int i = 0; i < array.length(); i++) {

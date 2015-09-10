@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.global.labs.common.Constants;
 import com.global.labs.common.GMapV2Direction;
 import com.global.labs.common.JsonParsing;
 import com.global.labs.common.SeachModel;
@@ -121,7 +122,20 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
     public boolean onMarkerClick(Marker marker) {
         if (getIntent().hasExtra("indusual")) {
             int poisition = Integer.parseInt(marker.getSnippet());
-            startActivity(new Intent(this, DetailActivity.class).putExtra("Lat", mDatalist.get(poisition).getLat()).putExtra("Long", mDatalist.get(poisition).getMlong()).putExtra("MARK", mDatalist.get(poisition).getGroundName()));
+
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.ADDRESS, mDatalist.get(poisition).getAddress());
+            bundle.putString(Constants.INFO, mDatalist.get(poisition).getGroundInfo());
+            bundle.putString(Constants.PHONENO, mDatalist.get(poisition).getPhoneNum());
+            bundle.putString(Constants.GROUNDNAME, mDatalist.get(poisition).getGroundName());
+            bundle.putString(Constants.AREA, mDatalist.get(poisition).getArea());
+            bundle.putString(Constants.CITY, mDatalist.get(poisition).getCity());
+
+            if (mDatalist.get(poisition).getImageurls() != null)
+                bundle.putStringArrayList(Constants.IMAGES, new ArrayList<String>(mDatalist.get(poisition).getImageurls()));
+
+            startActivity(new Intent(this, DetailActivity.class).putExtra("Lat", mDatalist.get(poisition).getLat()).putExtra("Long", mDatalist.get(poisition).getMlong()).putExtra("MARK", mDatalist.get(poisition).getGroundName()).putExtras(bundle));
+            //            startActivity(new Intent(this, DetailActivity.class).putExtra("Lat", mDatalist.get(poisition).getLat()).putExtra("Long", mDatalist.get(poisition).getMlong()).putExtra("MARK", mDatalist.get(poisition).getGroundName()));
         } else {
         }
         return false;
@@ -184,7 +198,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
             if (s != null)
                 mMap.addPolyline(s);
             else
-                 Toast.makeText(MapsActivity.this, "Connectivity Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapsActivity.this, "Connectivity Error", Toast.LENGTH_SHORT).show();
 
         }
 

@@ -43,17 +43,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    List<String> Sportarray ;
+    List<String> Sportarray;
+
     void spinersetup(View view) {
         try {
-            Sportarray=  new  JsonParsing().jsonarraytolist(DatabaseHelper.getInstance(getActivity()).getMaintabledata("1").getCityList());
-            Sportarray.add(0,"--Select City --");
+            Sportarray = new JsonParsing().jsonarraytolist(DatabaseHelper.getInstance(getActivity()).getMaintabledata("1").getCityList());
+//            Sportarray.add(0,"--Select City --");
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                     R.layout.spiner_item, Sportarray);
             Spinner spiner = (Spinner) view.findViewById(R.id.spinerlocation);
             spiner.setAdapter(adapter);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        } catch (Exception  e) {
+        } catch (Exception e) {
 
         }
 
@@ -65,7 +66,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.seacrhbutton:
                 if (Internet.getInstance().internetConnectivity(getActivity()))
-                    searchcall();
+                    if (searchbox.getText().toString().trim().length() > 0)
+                        searchcall();
+                    else
+                        Toast.makeText(getActivity(), "Please Enter Something", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getActivity(), "Please Check Internet", Toast.LENGTH_SHORT).show();
                 break;
@@ -87,7 +91,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         dilog.setCancelable(false);
         dilog.show();
         hidekeyboad();
-        WebService web = new WebService("searchString=" + searchbox.getText().toString()+"&searchCity=bangalore", getActivity(), Constants.URL + "/getSearchResults");
+        WebService web = new WebService("searchString=" + searchbox.getText().toString().trim() + "&searchCity=bangalore", getActivity(), Constants.URL + "/getSearchResults");
         web.Result(new ResultBack() {
             @Override
             public void Result(String str, boolean status) {

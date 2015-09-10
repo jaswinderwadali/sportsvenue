@@ -10,6 +10,16 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="overlap" parent="AppTheme">
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
+    </style>
+
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <!-- Required for pre-Lollipop. -->
+        <item name="overlapAnchor">false</item>
+
+    </style>
+
 
     <color name="standard">#94A633</color>
 

@@ -20,6 +20,13 @@ public class About extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.about, container, false);
+        NavigationActivity.resultnotfound=true;
         return view;
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        NavigationActivity.resultnotfound = false;
+    }
+
 }

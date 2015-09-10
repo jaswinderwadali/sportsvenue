@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.global.labs.R;
 import com.global.labs.adapters.PagerAdapter;
 import com.global.labs.common.Constants;
-import com.global.labs.R;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,20 +55,31 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     void pagersetup() {
+
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-        pager.setAdapter(adapter);
-        pager.addOnPageChangeListener(pagechange);
+        if (getIntent().hasExtra(Constants.IMAGES)) {
+            ArrayList<String> imagelist = getIntent().getStringArrayListExtra(Constants.IMAGES);
+            if (imagelist != null) {
+                if (imagelist.size() > 0) {
+                    PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), getIntent().getStringArrayListExtra(Constants.IMAGES), DetailActivity.this);
+                    pager.setAdapter(adapter);
+                    pager.addOnPageChangeListener(pagechange);
+                    dotsCount = imagelist.size();
+                }
+
+            }
+        }
     }
 
 
-    int dotsCount;
+    int dotsCount = 1;
     TextView[] dots;
 
     void dotss() {
+
         LinearLayout dotslayout = (LinearLayout) findViewById(R.id.dotslayout);
 
-        dotsCount = 4;
+
         dots = new TextView[dotsCount];
 
         for (int i = 0; i < dotsCount; i++) {

@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.global.labs.R;
 import com.global.labs.common.Constants;
 import com.global.labs.common.SeachModel;
-import com.global.labs.R;
 import com.global.labs.ui.DetailActivity;
+import com.global.labs.utils.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,10 +26,13 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> im
 
     Context ctx;
     List<SeachModel> Datalist;
+    ImageLoader loader;
 
     public ResultAdapter(List<SeachModel> Datalist, Context ctx) {
         this.ctx = ctx;
         this.Datalist = Datalist;
+        loader = new ImageLoader(ctx, android.R.color.transparent);
+
     }
 
     @Override
@@ -66,6 +71,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> im
         bundle.putString(Constants.AREA, Datalist.get((Integer) v.getTag()).getArea());
         bundle.putString(Constants.CITY, Datalist.get((Integer) v.getTag()).getCity());
 
+        if (Datalist.get((Integer) v.getTag()).getImageurls() != null)
+            bundle.putStringArrayList(Constants.IMAGES, new ArrayList<String>(Datalist.get((Integer) v.getTag()).getImageurls()));
 
         ctx.startActivity(new Intent(ctx, DetailActivity.class).putExtra("Lat", Datalist.get((Integer) v.getTag()).getLat()).putExtra("Long", Datalist.get((Integer) v.getTag()).getMlong()).putExtra("MARK", Datalist.get((Integer) v.getTag()).getGroundName()).putExtras(bundle));
     }
@@ -79,7 +86,12 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> im
             TextView dec = (TextView) itemView.findViewById(R.id.detailtv);
             dec.setText(Datalist.get(position).getGroundInfo());
             ImageView image = (ImageView) itemView.findViewById(R.id.image);
-            image.setImageResource(R.drawable.groundbig);
+            if (Datalist.get(position).getImageurls() != null) {
+                if (Datalist.get(position).getImageurls().size() > 0) {
+                    loader.DisplayImage(Datalist.get(position).getImageurls().get(0), image, 100);
+                }
+            }
+//            image.setImageResource(R.drawable.groundbig);
 
         }
     }

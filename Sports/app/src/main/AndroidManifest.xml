@@ -4,15 +4,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.global.labs.common.Main_App"
+        android:name=".common.Main_App"
         android:allowBackup="true"
-        android:icon="@mipmap/appiconnew"
+        android:icon="@drawable/appicon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <meta-data
@@ -30,41 +32,44 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
-            android:name="com.global.labs.ui.AdvaceSearch"
+            android:name=".ui.AdvaceSearch"
             android:label="@string/title_activity_maps"
-            android:parentActivityName="com.global.labs.ui.NavigationActivity"
+            android:parentActivityName=".ui.NavigationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.global.labs.ui.MapsActivity"
+            android:name=".ui.MapsActivity"
             android:label="@string/title_activity_startup"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.global.labs.ui.NavigationActivity"
+            android:name=".ui.NavigationActivity"
             android:icon="@drawable/logoicon"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"></activity>
         <activity
-            android:name="com.global.labs.ui.ResultActivity"
+            android:name=".ui.ResultActivity"
             android:label="@string/title_activity_result"
-            android:parentActivityName="com.global.labs.ui.NavigationActivity"
-            android:screenOrientation="portrait" />
+            android:parentActivityName=".ui.NavigationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/overlap" />
         <activity
-            android:name="com.global.labs.ui.DetailActivity"
+            android:name=".ui.DetailActivity"
             android:label="@string/title_activity_detail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.global.labs.ui.Login_with"
-            android:label="@string/app_name">
+            android:name=".ui.Login_with"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.Splash"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

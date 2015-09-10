@@ -1,16 +1,20 @@
 package com.global.labs.ui;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.global.labs.R;
 import com.global.labs.adapters.Drawer_Adapter;
@@ -26,6 +30,29 @@ public class NavigationActivity extends AppCompatActivity {
     ActionBarDrawerToggle mDrawerToggle;
     DrawerLayout Drawer;
 
+    boolean doubleBackToExitPressedOnce = false;
+    public static boolean resultnotfound = false;
+
+    @Override
+    public void onBackPressed() {
+        if (resultnotfound) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+        } else {
+
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +108,13 @@ public class NavigationActivity extends AppCompatActivity {
         LinearLayoutManager mgr = new LinearLayoutManager(this);
         mgr.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(mgr);
-        changefragment();
         if (!Constants.CHECK) {
             searchcall();
             Constants.CHECK = true;
+        } else {
+            changefragment();
         }
+
     }
 
 
@@ -103,18 +132,21 @@ public class NavigationActivity extends AppCompatActivity {
                 dilog.dismiss();
                 try {
                     DatabaseHelper.getInstance(NavigationActivity.this).InsertMainTable(new JsonParsing().Maindata(str));
+                    changefragment();
+                    Constants.CHECK = true;
                 } catch (Exception e) {
                     e.printStackTrace();
                     Constants.CHECK = false;
-
+                    popup();
                 }
             }
 
             @Override
             public void Error(String message) {
                 dilog.dismiss();
+                Constants.CHECK = false;
                 Snackbar.make(findViewById(R.id.textView), "Error", Snackbar.LENGTH_SHORT).show();
-
+                popup();
             }
         });
         getweb.execute();
@@ -124,6 +156,38 @@ public class NavigationActivity extends AppCompatActivity {
 
     void changefragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+    }
+
+
+    void popup() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(
+                NavigationActivity.this);
+
+        builder.setTitle(getResources().getString(R.string.app_name));
+        builder.setMessage("Network Problem !");
+
+        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                searchcall();
+            }
+
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.setCancelable(false)  ;
+        alert.show();
     }
 
 

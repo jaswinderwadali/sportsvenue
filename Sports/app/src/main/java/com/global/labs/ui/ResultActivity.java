@@ -65,6 +65,7 @@ public class ResultActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.showall) {
+
             startActivity(new Intent(this, MapsActivity.class).putExtra("indusual", false).putExtras(getIntent()));
             return true;
         }

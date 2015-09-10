@@ -13,12 +13,20 @@ import com.global.labs.R;
 
 public class Result_Add extends Fragment implements View.OnClickListener {
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        NavigationActivity.resultnotfound = false;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_result__add, container, false);
         view.findViewById(R.id.dousknow).setOnClickListener(this);
         view.findViewById(R.id.goback).setOnClickListener(this);
+        NavigationActivity.resultnotfound = true;
         return view;
     }
 
