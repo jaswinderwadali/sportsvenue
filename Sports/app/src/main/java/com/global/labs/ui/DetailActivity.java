@@ -60,8 +60,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         TextView gameinfo = (TextView) findViewById(R.id.gameinfo);
         TextView adresstv = (TextView) findViewById(R.id.adresstv);
         TextView Contactno = (TextView) findViewById(R.id.Contactno);
-//        findViewById(R.id.showallreviews).setOnClickListener(this);
-
+        System.out.println("Hello world");
+        //        findViewById(R.id.showallreviews).setOnClickListener(this);
         findViewById(R.id.reviewlay).setVisibility(View.INVISIBLE);
         findViewById(R.id.reviewprogresbar).setVisibility(View.VISIBLE);
 
