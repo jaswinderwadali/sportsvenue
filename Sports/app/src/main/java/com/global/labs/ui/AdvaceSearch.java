@@ -44,28 +44,7 @@ public class AdvaceSearch extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.searchtv).setOnClickListener(this);
     }
 
-//    String[] cityarray = {"-- Select Location --", "Mg Road", "WhiteField", "Bannerghatta", "Mysore Road", "Hosur Road", "New Airport Road"};
-//    String[] Sportarray = {"-- Select Sports --", "Tennis", "Cricket", "Football", "Basketball", "Vollyball", "Hockey"};
 
-//    void spinersetup() {
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                R.layout.spiner_item, cityarray);
-//        Spinner spiner = (Spinner) findViewById(R.id.cityspiner);
-//        spiner.setAdapter(adapter);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//
-//        ArrayAdapter<String> adaptertwo = new ArrayAdapter<String>(this,
-//                R.layout.spiner_item, Sportarray);
-//        Spinner sportspiner = (Spinner) findViewById(R.id.sportsspiner);
-//        sportspiner.setAdapter(adaptertwo);
-//        adaptertwo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        spiner.setOnItemSelectedListener(itemseletc);
-//        sportspiner.setOnItemSelectedListener(itemseletc);
-//
-//
-//    }
 
 
     @Override
@@ -125,7 +104,7 @@ public class AdvaceSearch extends AppCompatActivity implements View.OnClickListe
             dilog.setMessage("Searching....");
             dilog.setCancelable(false);
             dilog.show();
-            WebService web = new WebService("sport=" + SportsList.get(sports) + "&area=" + Arealist.get(area), this, Constants.URL + "/getsearchAdvanced");
+            WebService web = new WebService("sport=" + SportsList.get(sports) + "&area=" + Arealist.get(area), this, Constants.URL + "/api/getsearchAdvanced");
             web.Result(new ResultBack() {
                 @Override
                 public void Result(String str, boolean status) {

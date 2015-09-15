@@ -158,6 +158,9 @@
 
                 </LinearLayout>
 
+                <include
+                    layout="@layout/rate_review" />
+
             </LinearLayout>
         </RelativeLayout>
 

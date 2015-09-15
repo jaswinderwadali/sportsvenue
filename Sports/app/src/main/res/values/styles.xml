@@ -22,6 +22,7 @@
 
 
     <color name="standard">#94A633</color>
+    <color name="sixfour">#646464</color>
 
 
     <style name="spinner_style">

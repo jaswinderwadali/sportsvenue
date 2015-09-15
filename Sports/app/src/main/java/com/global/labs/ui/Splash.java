@@ -14,6 +14,12 @@ public class Splash extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+//        ImageView imageView = (ImageView) findViewById(R.id.loaderimage);
+//        Picasso.with(this)
+//                .load("http://blog.jimdo.com/wp-content/uploads/2014/01/tree-247122.jpg")
+//                .placeholder(R.drawable.abc_ab_share_pack_mtrl_alpha)
+//                .error(R.drawable.abc_ab_share_pack_mtrl_alpha)
+//                .into(imageView);
         Delay();
     }
 

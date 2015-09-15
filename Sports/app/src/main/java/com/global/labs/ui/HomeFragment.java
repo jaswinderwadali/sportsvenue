@@ -3,10 +3,13 @@ package com.global.labs.ui;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +23,14 @@ import com.global.labs.R;
 import com.global.labs.common.Constants;
 import com.global.labs.common.DatabaseHelper;
 import com.global.labs.common.JsonParsing;
+import com.global.labs.common.MyClass;
 import com.global.labs.utils.Internet;
 import com.global.labs.utils.ResultBack;
 import com.global.labs.utils.WebService;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -40,6 +46,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.advance_search).setOnClickListener(this);
         searchbox = (EditText) view.findViewById(R.id.search_box);
         spinersetup(view);
+        PackageManager packageManager = getActivity().getPackageManager();
+        try {
+            ActivityInfo info = packageManager.getActivityInfo(getActivity().getComponentName(), 0);
+            String str = info.name;
+            if (info.name.equals("com.global.labs.ui.NavigationActivity")) {
+                EventBus.getDefault().postSticky(new MyClass("Hello world"));
+            }else {
+                System.out.println("fail");
+            }
+
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
@@ -60,6 +80,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 //      spiner.setOnItemSelectedListener(itemseletc);
     }
+
+
+    @Override
+    public void onResume() {
+        manager();
+        super.onResume();
+    }
+
+    void manager(){
+        WebService web = new WebService("", getActivity().getApplicationContext(), Constants.URL + "/user/55f299028abc50d0703569ce");
+        web.Result(new ResultBack() {
+            @Override
+            public void Result(String str, boolean falg) {
+                Log.v("", "" + str);
+                Toast.makeText(getActivity(),""+str,Toast.LENGTH_SHORT).show();
+            }
+        });
+        web.execute();
+    }
+
+
 
     @Override
     public void onClick(View v) {
@@ -91,7 +132,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         dilog.setCancelable(false);
         dilog.show();
         hidekeyboad();
-        WebService web = new WebService("searchString=" + searchbox.getText().toString().trim() + "&searchCity=bangalore", getActivity(), Constants.URL + "/getSearchResults");
+        WebService web = new WebService("searchString=" + searchbox.getText().toString().trim() + "&searchCity=bangalore", getActivity(), Constants.URL + "/api/getSearchResults");
         web.Result(new ResultBack() {
             @Override
             public void Result(String str, boolean status) {

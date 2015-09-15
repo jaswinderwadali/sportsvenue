@@ -70,6 +70,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> im
         bundle.putString(Constants.GROUNDNAME, Datalist.get((Integer) v.getTag()).getGroundName());
         bundle.putString(Constants.AREA, Datalist.get((Integer) v.getTag()).getArea());
         bundle.putString(Constants.CITY, Datalist.get((Integer) v.getTag()).getCity());
+        bundle.putString(Constants.ID, Datalist.get((Integer) v.getTag()).getId());
 
         if (Datalist.get((Integer) v.getTag()).getImageurls() != null)
             bundle.putStringArrayList(Constants.IMAGES, new ArrayList<String>(Datalist.get((Integer) v.getTag()).getImageurls()));

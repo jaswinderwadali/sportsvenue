@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -19,6 +20,9 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.global.labs.R;
+import com.global.labs.common.Constants;
+import com.global.labs.utils.ResultBack;
+import com.global.labs.utils.WebService;
 
 import org.json.JSONObject;
 
@@ -80,7 +84,7 @@ public class Login_with extends AppCompatActivity implements View.OnClickListene
         });
         getids();
 
-
+        SessionMaintain();
     }
 
 
@@ -101,6 +105,13 @@ public class Login_with extends AppCompatActivity implements View.OnClickListene
                 break;
         }
 
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        manager();
+        super.onPostResume();
     }
 
     @Override
@@ -127,5 +138,51 @@ public class Login_with extends AppCompatActivity implements View.OnClickListene
             System.out.println("" + e);
         }
     }
+
+
+
+
+
+
+    void manager(){
+     WebService web = new WebService("", Login_with.this, Constants.URL + "/user/55f299028abc50d0703569ce");
+        web.Result(new ResultBack() {
+            @Override
+            public void Result(String str, boolean falg) {
+                Log.v("", "" + str);
+                Toast.makeText(Login_with.this,""+str,Toast.LENGTH_SHORT).show();
+            }
+        });
+        web.execute();
+    }
+    void SessionMaintain() {
+
+        WebService web = new WebService("email=jaswinder.wadali@mantralabsglobal.com&password=RFdXk", this, Constants.URL + "/api/testlogin");
+        web.Result(new ResultBack() {
+            @Override
+            public void Result(String str, boolean falg) {
+
+                Log.v("", "" + str);
+
+
+                WebService web = new WebService("", Login_with.this, Constants.URL + "/user/55f299028abc50d0703569ce");
+                web.Result(new ResultBack() {
+                    @Override
+                    public void Result(String str, boolean falg) {
+
+                            Log.v("", "" + str);
+
+                    }
+                });
+                web.execute();
+
+
+            }
+        });
+        web.execute();
+
+
+    }
+
 
 }

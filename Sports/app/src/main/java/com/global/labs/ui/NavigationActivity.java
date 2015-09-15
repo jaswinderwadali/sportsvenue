@@ -21,14 +21,28 @@ import com.global.labs.adapters.Drawer_Adapter;
 import com.global.labs.common.Constants;
 import com.global.labs.common.DatabaseHelper;
 import com.global.labs.common.JsonParsing;
+import com.global.labs.common.MyClass;
 import com.global.labs.utils.Interface_Result;
 import com.global.labs.utils.WebserviceGET;
+
+import de.greenrobot.event.EventBus;
 
 public class NavigationActivity extends AppCompatActivity {
 
 
     ActionBarDrawerToggle mDrawerToggle;
     DrawerLayout Drawer;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
     boolean doubleBackToExitPressedOnce = false;
     public static boolean resultnotfound = false;
@@ -99,7 +113,7 @@ public class NavigationActivity extends AppCompatActivity {
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-
+        EventBus.getDefault().register(this);
         RecyclerView rv = (RecyclerView) findViewById(R.id.LeftDrawer);
         String[] str = {"Home", "About", "Help & Feedback", "Contact Us"};
         int[] ids = {R.drawable.homeicon, R.drawable.about, R.drawable.help_feedback, R.drawable.contactus};
@@ -115,6 +129,7 @@ public class NavigationActivity extends AppCompatActivity {
             changefragment();
         }
 
+
     }
 
 
@@ -125,7 +140,7 @@ public class NavigationActivity extends AppCompatActivity {
         dilog.setMessage("Please Wait....");
         dilog.setCancelable(false);
         dilog.show();
-        WebserviceGET getweb = new WebserviceGET(this, Constants.URL + "/fetchCityDetails");
+        WebserviceGET getweb = new WebserviceGET(this, Constants.URL + "/api/fetchCityDetails");
         getweb.Result(new Interface_Result() {
             @Override
             public void Success(String str) {
@@ -186,9 +201,16 @@ public class NavigationActivity extends AppCompatActivity {
         });
 
         AlertDialog alert = builder.create();
-        alert.setCancelable(false)  ;
+        alert.setCancelable(false);
         alert.show();
     }
+
+    public void onEvent(MyClass e) {
+        Toast.makeText(NavigationActivity.this, e.getStr(), Toast.LENGTH_LONG).show();
+    }
+
+
+
 
 
 }

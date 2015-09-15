@@ -63,7 +63,8 @@ public class WebService extends AsyncTask<Void, Void, String> {
             cox.setRequestProperty("charset", "utf-8");
             cox.setRequestProperty("Content-Length",
                     Integer.toString(postDataLength));
-            cox.setUseCaches(false);
+            cox.setUseCaches(true);
+            cox.getUseCaches();
             OutputStreamWriter writer = new OutputStreamWriter(
                     cox.getOutputStream());
             writer.write(parms);

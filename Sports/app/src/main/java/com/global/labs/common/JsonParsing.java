@@ -91,4 +91,33 @@ public class JsonParsing {
     }
 
 
+    public List<ReviewModel> mReviewList(String jsonstr) {
+
+        try {
+            List<ReviewModel> list = new ArrayList<>();
+            JSONObject jsonObject = new JSONObject(jsonstr);
+            JSONArray reviewarray = jsonObject.optJSONArray("reviews");
+            for (int i = 0; reviewarray.length() > i; i++) {
+                ReviewModel model = new ReviewModel();
+                JSONObject inerobj = reviewarray.optJSONObject(i);
+                model.setGroundId(inerobj.optString("groundId"));
+                model.setTitle(inerobj.optString("title"));
+                model.setReview(inerobj.optString("review"));
+                model.setRating(inerobj.optString("rating"));
+                model.setUserName(inerobj.optString("userName"));
+                model.setUserId(inerobj.optString("userId"));
+                model.setCreatedAt(inerobj.optString("createdAt"));
+                model.setUpdatedAt(inerobj.optString("updatedAt"));
+                model.setId(inerobj.optString("id"));
+                model.setOwnReview(inerobj.optString("ownReview"));
+                list.add(model);
+            }
+
+            return list;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

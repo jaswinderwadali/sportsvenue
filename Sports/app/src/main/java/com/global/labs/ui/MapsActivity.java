@@ -170,7 +170,6 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
             PolylineOptions rectLine = null;
             try {
-
                 GMapV2Direction md = new GMapV2Direction();
                 LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
                 String lati = getIntent().getStringExtra("Lat");

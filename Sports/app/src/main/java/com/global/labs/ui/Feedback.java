@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.global.labs.R;
 
 /**
- * Created by Mantra on 9/7/2015.
+ * Created by jaswinder on 9/7/2015.
  */
 public class Feedback extends Fragment {
 
@@ -41,7 +41,6 @@ public class Feedback extends Fragment {
                 startActivity(intent);
             }
         });
-
         NavigationActivity.resultnotfound=true;
         return view;
     }
