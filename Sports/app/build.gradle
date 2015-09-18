@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply from: 'maven_push.gradle'
 
 android {
     compileSdkVersion 21
@@ -35,3 +34,4 @@ dependencies {
 
     //    compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
 }
+apply from: 'maven_push.gradle'
