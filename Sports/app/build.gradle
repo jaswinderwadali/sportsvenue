@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
+    buildToolsVersion getDefaultProguardFile
 
     defaultConfig {
         applicationId "com.global.labs.sports"
