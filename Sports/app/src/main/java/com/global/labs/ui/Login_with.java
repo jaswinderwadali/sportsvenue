@@ -126,6 +126,7 @@ public class Login_with extends AppCompatActivity implements View.OnClickListene
             PackageInfo info = getPackageManager().getPackageInfo(
                     this.getPackageName(),
                     PackageManager.GET_SIGNATURES);
+
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
