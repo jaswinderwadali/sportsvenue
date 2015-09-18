@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onResume() {
-        manager();
+       // manager();
         super.onResume();
     }
 

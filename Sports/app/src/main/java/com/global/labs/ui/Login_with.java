@@ -110,7 +110,7 @@ public class Login_with extends AppCompatActivity implements View.OnClickListene
 
     @Override
     protected void onPostResume() {
-        manager();
+       // manager();
         super.onPostResume();
     }
 
