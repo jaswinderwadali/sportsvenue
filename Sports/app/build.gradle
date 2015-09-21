@@ -14,6 +14,7 @@ android {
 
 
     signingConfigs {
+
         release {
             storeFile file("keystore.jks")
             storePassword "keystore"
@@ -24,6 +25,14 @@ android {
 
 
     buildTypes {
+        debug {
+            // proguard
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            // ZipAlign
+            zipAlign false
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
