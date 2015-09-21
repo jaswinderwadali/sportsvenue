@@ -11,6 +11,28 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword "keystore"
+            keyAlias "alias"
+            keyPassword "keystore"
+        }
+    }
+
+    buildTypes {
+        release {
+            zipAlign true
+            signingConfig signingConfigs.release
+        }
+        debug {
+            zipAlign true
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
