@@ -22,16 +22,6 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            zipAlign true
-            signingConfig signingConfigs.release
-        }
-        debug {
-            zipAlign true
-        }
-    }
-
 
     buildTypes {
         release {
