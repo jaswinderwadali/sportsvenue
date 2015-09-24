@@ -27,6 +27,8 @@
     <string name="Mainly">Mainly :</string>
     <string name="Address">Address</string>
     <string name="Contact">Contact :</string>
+    <string name="searchnearby">Search Nearby</string>
+
     <string name="Showmap">Click here to Show Map</string>
 
     <string name="advancesearch">Advanced Search</string>
@@ -47,6 +49,8 @@
     <string name="title_activity_test">Test</string>
     <string name="title_activity_login_with">Login_with</string>
     <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_search_nearby">SearchNearby</string>
+    <string name="title_activity_rate__reviews">Rate_Reviews</string>
 
 
 </resources>

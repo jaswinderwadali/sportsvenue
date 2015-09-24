@@ -1,13 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.global.labs.ui.ResultActivity">
-
-
-    <include
-        android:id="@+id/resulttoolbar"
-        layout="@layout/toolbar" />
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
 
@@ -15,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/resulttoolbar"
         android:layout_gravity="left"
         android:scrollbars="vertical">
 

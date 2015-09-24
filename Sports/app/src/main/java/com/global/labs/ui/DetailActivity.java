@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +58,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         TextView gameinfo = (TextView) findViewById(R.id.gameinfo);
         TextView adresstv = (TextView) findViewById(R.id.adresstv);
         TextView Contactno = (TextView) findViewById(R.id.Contactno);
-        System.out.println("Hello world");
+        findViewById(R.id.openreviews).setOnClickListener(this);
+
         //        findViewById(R.id.showallreviews).setOnClickListener(this);
         findViewById(R.id.reviewlay).setVisibility(View.INVISIBLE);
         findViewById(R.id.reviewprogresbar).setVisibility(View.VISIBLE);
@@ -152,6 +151,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.ratelayout:
                 openratingpopup();
                 break;
+            case R.id.openreviews:
+                startActivity(new Intent(DetailActivity.this, Rate_Reviews.class));
             default:
                 break;
 
@@ -170,10 +171,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 try {
                     findViewById(R.id.reviewlay).setVisibility(View.VISIBLE);
                     findViewById(R.id.reviewprogresbar).setVisibility(View.INVISIBLE);
-                    List<ReviewModel>  reviews= new JsonParsing().mReviewList(str);
-                    ReviewsAdapter adapter= new ReviewsAdapter(reviews);
-                    ListView listView = (ListView) findViewById(R.id.reviewlistview);
-                    listView.setAdapter(adapter);
+                    List<ReviewModel> reviews = new JsonParsing().mReviewList(str);
+                       ReviewsAdapter adapter = new ReviewsAdapter(reviews);
+                  //  ListView listView = (ListView) findViewById(R.id.reviewlistview);
+                   // listView.setAdapter(adapter);
                 } catch (Exception e) {
 
                     e.printStackTrace();
@@ -185,11 +186,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void Error(String message) {
 
-                Snackbar.make(findViewById(R.id.textView), "Error", Snackbar.LENGTH_SHORT).show();
+          //      Snackbar.make(findViewById(R.id.textView), "Error", Snackbar.LENGTH_SHORT).show();
             }
         });
         getweb.execute();
-
 
 
     }

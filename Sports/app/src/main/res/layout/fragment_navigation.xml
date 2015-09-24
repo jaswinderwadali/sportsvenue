@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-
     android:orientation="vertical"
     tools:context="com.global.labs.ui.NavigationActivity$PlaceholderFragment">
 
 
     <LinearLayout
         android:id="@+id/llone"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="@dimen/sixty"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
         android:orientation="horizontal">
@@ -21,33 +21,34 @@
             android:id="@+id/search_box"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="#FFFFFF"
-            android:singleLine="true"
             android:drawableLeft="@drawable/location"
             android:gravity="center"
             android:hint="@string/Searchsportsvenue"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:singleLine="true" />
 
-        <LinearLayout
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinerlocation"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"></Spinner>
 
-            <Spinner
-                android:id="@+id/spinerlocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:padding="5dp"></Spinner>
-
-        </LinearLayout>
     </LinearLayout>
 
     <Button
@@ -71,5 +72,18 @@
         android:layout_marginTop="50dp"
         android:text="@string/AdvSearch"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/common_signin_btn_dark_text_default"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/searchnearby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seacrhbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/searchnearby"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/common_signin_btn_dark_text_default" />
+
 </RelativeLayout>

@@ -1,11 +1,14 @@
 package com.global.labs.ui;
 
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -23,20 +26,32 @@ import com.global.labs.R;
 import com.global.labs.common.Constants;
 import com.global.labs.common.DatabaseHelper;
 import com.global.labs.common.JsonParsing;
-import com.global.labs.common.MyClass;
+import com.global.labs.utils.GetLatlong;
 import com.global.labs.utils.Internet;
 import com.global.labs.utils.ResultBack;
 import com.global.labs.utils.WebService;
 
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
-
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
-    EditText searchbox;
+    private EditText searchbox;
+    private GetLatlong gps;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 123)
+            gps = new GetLatlong(getActivity());
+        if (!gps.getIsGPSTrackingEnabled()) {
+            Toast.makeText(getActivity(), "GPS not Enable Properly", Toast.LENGTH_SHORT).show();
+        } else {
+            searchcall(true);
+        }
+
+    }
 
     @Nullable
     @Override
@@ -44,22 +59,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_navigation, container, false);
         view.findViewById(R.id.seacrhbutton).setOnClickListener(this);
         view.findViewById(R.id.advance_search).setOnClickListener(this);
+        view.findViewById(R.id.searchnearby).setOnClickListener(this);
         searchbox = (EditText) view.findViewById(R.id.search_box);
         spinersetup(view);
-        PackageManager packageManager = getActivity().getPackageManager();
-        try {
-            ActivityInfo info = packageManager.getActivityInfo(getActivity().getComponentName(), 0);
-            String str = info.name;
-            if (info.name.equals("com.global.labs.ui.NavigationActivity")) {
-                EventBus.getDefault().postSticky(new MyClass("Hello world"));
-            }else {
-                System.out.println("fail");
-            }
-
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
         return view;
     }
 
@@ -84,22 +86,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onResume() {
-       // manager();
+        // manager();
         super.onResume();
     }
 
-    void manager(){
+    void manager() {
         WebService web = new WebService("", getActivity().getApplicationContext(), Constants.URL + "/user/55f299028abc50d0703569ce");
         web.Result(new ResultBack() {
             @Override
             public void Result(String str, boolean falg) {
                 Log.v("", "" + str);
-                Toast.makeText(getActivity(),""+str,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + str, Toast.LENGTH_SHORT).show();
             }
         });
         web.execute();
     }
-
 
 
     @Override
@@ -108,7 +109,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.seacrhbutton:
                 if (Internet.getInstance().internetConnectivity(getActivity()))
                     if (searchbox.getText().toString().trim().length() > 0)
-                        searchcall();
+                        searchcall(false);
                     else
                         Toast.makeText(getActivity(), "Please Enter Something", Toast.LENGTH_SHORT).show();
                 else
@@ -117,6 +118,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.advance_search:
                 startActivity(new Intent(getActivity(), AdvaceSearch.class));
                 break;
+            case R.id.searchnearby:
+                mSearchnearabout();
             default:
                 break;
 
@@ -124,9 +127,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
     ProgressDialog dilog;
 
-    private void searchcall() {
+    private void searchcall(final boolean nearby) {
+
+        if (nearby)
+            searchbox.setText("");
+
         dilog = new ProgressDialog(getActivity());
         dilog.setMessage("Searching....");
         dilog.setCancelable(false);
@@ -139,7 +147,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 dilog.dismiss();
                 if (status)
                     if (JsonParsing.HasData(str))
-                        getActivity().startActivity(new Intent(getActivity(), ResultActivity.class).putExtra("DATA", str));
+                        if (!nearby)
+                            getActivity().startActivity(new Intent(getActivity(), ResultActivity.class).putExtra("DATA", str));
+                        else {
+
+                            getActivity().startActivity(new Intent(getActivity(), ResultActivity.class).putExtra("DATA", str).putExtra("lat", gps.latitude).putExtra("mlong", gps.longitude));
+                        }
                     else {
                         getFragmentManager().beginTransaction().replace(R.id.container, new Result_Add()).commit();
                         Snackbar.make(getActivity().findViewById(R.id.textView), "Result Not Found..", Snackbar.LENGTH_SHORT).show();
@@ -149,6 +162,50 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
         web.execute();
+    }
+
+
+    private void mSearchnearabout() {
+        gps = new GetLatlong(getActivity());
+        if (gps.getIsGPSTrackingEnabled()) {
+            double lat = gps.longitude;
+            double mlong = gps.longitude;
+            searchcall(true);
+        } else
+            showSettingsAlert();
+    }
+
+
+    public void showSettingsAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        // Setting Dialog Title
+        alertDialog.setTitle(R.string.app_name);
+        // Setting Dialog Message
+        alertDialog.setMessage("Please Enable Your GPS From Device Settings");
+        // On Pressing Setting button
+        alertDialog.setPositiveButton(R.string.action_settings,
+                new DialogInterface.OnClickListener() {
+
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(
+                                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(intent, 123);
+                    }
+                });
+
+        // On pressing cancel button
+        alertDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        alertDialog.show();
     }
 
 

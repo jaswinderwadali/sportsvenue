@@ -39,6 +39,6 @@ public class Splash extends ActionBarActivity {
 
 
             }
-        }, 1000);
+        }, 1500);
     }
 }

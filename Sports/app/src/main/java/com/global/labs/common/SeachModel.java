@@ -134,6 +134,16 @@ public class SeachModel {
     String updatedAt;
     String id;
 
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
+    }
+
+    Double distance;
+
     public List<String> getImageurls() {
         return Imageurls;
     }

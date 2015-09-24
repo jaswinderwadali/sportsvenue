@@ -1,5 +1,6 @@
 package com.global.labs.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -86,6 +87,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> im
             header.setText(Datalist.get(position).getSport());
             TextView dec = (TextView) itemView.findViewById(R.id.detailtv);
             dec.setText(Datalist.get(position).getGroundInfo());
+            if (((Activity) ctx).getIntent().hasExtra("lat")) {
+                String distance = Double.toString(Datalist.get(position).getDistance()).substring(0, 3);
+                dec.setText(Datalist.get(position).getGroundInfo() + "   Near About : " +distance+" km");
+
+            }
             ImageView image = (ImageView) itemView.findViewById(R.id.image);
             if (Datalist.get(position).getImageurls() != null) {
                 if (Datalist.get(position).getImageurls().size() > 0) {

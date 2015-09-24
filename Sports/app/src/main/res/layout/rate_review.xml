@@ -41,32 +41,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/logoicon" />
+                android:src="@drawable/star" />
 
             <ImageView
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/logoicon" />
+                android:src="@drawable/star" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/logoicon" />
+                android:src="@drawable/star" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/logoicon" />
+                android:src="@drawable/star" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/logoicon" />
+                android:src="@drawable/star" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,13 +93,13 @@
         </LinearLayout>
 
 
-        <ListView
-            android:id="@+id/reviewlistview"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/openreviews"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/common_signin_btn_dark_text_focused">
-
-        </ListView>
+            android:gravity="center"
+            android:text="Reviews"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
 
 
     </LinearLayout>

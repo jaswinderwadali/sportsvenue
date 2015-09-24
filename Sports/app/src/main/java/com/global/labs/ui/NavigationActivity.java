@@ -36,12 +36,16 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        EventBus.getDefault().register(this);
+
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        EventBus.getDefault().unregister(this);
+
     }
 
     boolean doubleBackToExitPressedOnce = false;
@@ -113,7 +117,6 @@ public class NavigationActivity extends AppCompatActivity {
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        EventBus.getDefault().register(this);
         RecyclerView rv = (RecyclerView) findViewById(R.id.LeftDrawer);
         String[] str = {"Home", "About", "Help & Feedback", "Contact Us"};
         int[] ids = {R.drawable.homeicon, R.drawable.about, R.drawable.help_feedback, R.drawable.contactus};
@@ -208,9 +211,6 @@ public class NavigationActivity extends AppCompatActivity {
     public void onEvent(MyClass e) {
         Toast.makeText(NavigationActivity.this, e.getStr(), Toast.LENGTH_LONG).show();
     }
-
-
-
 
 
 }
